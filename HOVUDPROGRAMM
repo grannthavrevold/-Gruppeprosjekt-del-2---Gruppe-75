@@ -70,3 +70,12 @@ class Studieplan:
             if not emnekoder:
                 tekst += "  (Ingen emner)\n"
         return tekst
+
+def lag_nytt_emne(emner):
+    kode = input("Emnekode: ")
+    navn = input("Navn: ")
+    semester = input("Semester (H/V): ")
+    sp = int(input("Studiepoeng: "))
+    e = Emne(kode, navn, semester, sp)
+    emner.append(e)
+    print("Emne opprettet!")
