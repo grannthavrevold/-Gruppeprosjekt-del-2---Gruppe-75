@@ -1,13 +1,10 @@
 def lagre_til_fil():
     data = {
         "emner": [e.to_dict() for e in alle_emner],
-        "studieplaner": [s.to_dict() for s in alle_studieplaner]
-    }
+        "studieplaner": [s.to_dict() for s in alle_studieplaner}
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
     print("Data lagret til 'data.json'!")
-
-
 def les_fra_fil():
     global alle_emner, alle_studieplaner
     try:
