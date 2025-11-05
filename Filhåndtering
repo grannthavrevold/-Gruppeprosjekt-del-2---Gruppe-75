@@ -1,1 +1,20 @@
+def lagre_til_fil():
+    data = {
+        "emner": [e.to_dict() for e in alle_emner],
+        "studieplaner": [s.to_dict() for s in alle_studieplaner]
+    }
+    with open("data.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
+    print("Data lagret til 'data.json'!")
 
+
+def les_fra_fil():
+    global alle_emner, alle_studieplaner
+    try:
+        with open("data.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+        alle_emner = [Emne.from_dict(e) for e in data["emner"]]
+        alle_studieplaner = [Studieplan.from_dict(s, alle_emner) for s in data["studieplaner"]]
+        print("Data lest inn fra 'data.json'!")
+    except FileNotFoundError:
+        print("Fant ikke 'data.json'. Du må lagre data først.")
