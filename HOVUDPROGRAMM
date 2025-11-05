@@ -4,3 +4,6 @@ class Studieplan:
         self.tittel = tittel        # tittel på studieprogrammet
         # 6 semestre: 1, 2, 3, 4, 5, 6
         self.semestre = {i: [] for i in range(1, 7)}  # hver liste inneholder emnekoder
+
+    def __str__(self):
+        return f"{self.kode} - {self.navn} ({self.semester}, {self.studiepoeng} sp)"
