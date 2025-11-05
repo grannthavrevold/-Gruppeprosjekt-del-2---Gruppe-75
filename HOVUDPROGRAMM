@@ -135,12 +135,7 @@ def les_fra_fil():
 
 
 
-# listenavn som brukes i de forskjellige filene
-# bruk disse for å appende under funksjonen "lag_nytt_emne"
-emnekoder = []
-emnesemester = []
-emnestudiepoeng = []
-studieplan = {1: [], 2: [], 3: [], 4: [], 5: [], 6: []}
+
 
 def meny():
     while True:
