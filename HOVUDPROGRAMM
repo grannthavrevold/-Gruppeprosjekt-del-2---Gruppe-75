@@ -65,14 +65,17 @@ class Studieplan:
         self.semestre[semester].append(emne.kode)
         print(f"Emnet {emne.kode} ble lagt til i semester {semester}.")
 
+    # ser gjennom alle semestre, hvis emnekoden finnes, fjernes den
     def fjern_emne(self, emnekode):
-        for sem, emneliste in self.semestre.items():
+        for sem, emneliste in self.semestre.items(): # items gir nøkkel (sem) og verdi (emneliste)
             if emnekode in emneliste:
                 emneliste.remove(emnekode)
                 print(f"Emnet {emnekode} ble fjernet fra semester {sem}.")
                 return
         print("Emnet finnes ikke i denne studieplanen.")
 
+# sjekker alle semestre, og summerer opp studiepoeng per semester
+# hvis studiepoeng ulik 30, ikke gyldig, ellers returneres gyldig lik true
     def er_gyldig(self):
         gyldig = True
         for sem, emnekoder in self.semestre.items():
@@ -82,11 +85,15 @@ class Studieplan:
                 gyldig = False
         return gyldig
 
+# oversikt over studieplanen i tekstform
+# for hvert semester, skriver ut semesteroverskrift
+# 
     def __str__(self):
         tekst = f"\nStudieplan: {self.tittel} (ID: {self.plan_id})\n"
         for sem, emnekoder in self.semestre.items():
             tekst += f"Semester {sem}:\n"
             for kode in emnekoder:
+                # finn første emneobjekt med riktig kode, eller none hvis den ikke finnes
                 emne = next((e for e in emner if e.kode == kode), None)
                 if emne:
                     tekst += f"  - {emne}\n"
