@@ -137,40 +137,45 @@ def les_fra_fil():
 
 
 
-def meny():
+def hovedmeny():
     while True:
-        print("1. Lag nytt emne")
-        print("2. Legg til emne i studieplan")
-        print("3. Skriv ut alle emner")
-        print("4. Skriv ut studieplan")
-        print("5. Sjekk om studieplanen er gyldig")
-        print("6. Lagre til fil")
-        print("7. Les fra fil (oppretter filer hvis de mangler)")
-        print("8. Avslutt")
+        print("----- MENY -----")
+        print("1. Lag et nytt emne")
+        print("2. Legg til et emne i en studieplan")
+        print("3. Fjern et emne fra en studieplan")
+        print("4. Skriv ut ei liste over alle registrerte emner")
+        print("5. Lag en ny tom studieplan")
+        print("6. Skriv ut en studieplan med hvilke emner som er i hvert semester")
+        print("7. Sjekk om en studieplan er gyldig eller ikke")
+        print("8. Finn hvilke studieplaner som bruker et oppgitt emne")
+        print("9. Lagre emnene og studieplanene til fil")
+        print("10. Les inn emnene og studieplanene fra fil")
+        print("11. Avslutt")
+        print("-----------------")
+        valg = input("Velg et tall: ")
 
-        valg = input("velg: ")
-        print()
         if valg == "1":
-            lag_nytt_emne()
+            lag_emne()
         elif valg == "2":
             legg_til_emne_i_plan()
         elif valg == "3":
-            skriv_ut_emner()
+            fjern_emne_fra_plan()
         elif valg == "4":
-            skriv_ut_studieplan()
+            skriv_ut_emner()
         elif valg == "5":
-            sjekk_gyldighet()
+            lag_studieplan()
         elif valg == "6":
-            lagre_til_fil()
+            skriv_ut_plan()
         elif valg == "7":
-            les_fra_fil()
+            sjekk_plan_gyldig()
         elif valg == "8":
-            print("Avslutter programmet...")
+            finn_planer_med_emne()
+        elif valg == "9":
+            lagre_til_fil()
+        elif valg == "10":
+            les_fra_fil()
+        elif valg == "11":
+            print("Avslutter...")
             break
         else:
-            print("Ugyldig valg. \n")
-meny()
-Beta
-0 / 0
-used queries
-1
+            print("Ugyldig valg. Prøv igjen.")
