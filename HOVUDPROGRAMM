@@ -71,7 +71,10 @@ class Studieplan:
                 tekst += "  (Ingen emner)\n"
         return tekst
 
-def lag_nytt_emne(emner):
+emner = []           # liste med Emne-objekter
+studieplaner = []    # liste med Studieplan-objekter
+
+def lag_emne(emner):
     kode = input("Emnekode: ")
     navn = input("Navn: ")
     semester = input("Semester (H/V): ")
