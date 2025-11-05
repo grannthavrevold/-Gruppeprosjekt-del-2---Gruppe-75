@@ -1,1 +1,9 @@
+class Emne:
+    def __init__(self, kode, navn, semester, studiepoeng):
+        self.kode = kode        # unik emnekode (f.eks. DAT120)
+        self.navn = navn        # navn på emnet
+        self.semester = semester.upper()  # 'H' eller 'V'
+        self.studiepoeng = studiepoeng    # antall studiepoeng
 
+    def __str__(self):
+        return f"{self.kode} - {self.navn} ({self.semester}, {self.studiepoeng} sp)"
