@@ -104,12 +104,12 @@ class Studieplan:
 emner = []           # liste med Emne-objekter
 studieplaner = []    # liste med Studieplan-objekter
 
-def lag_emne(emner):
+def lag_emne():
     kode = input("Emnekode: ")
     navn = input("Navn: ")
     semester = input("Semester (H/V): ")
     studiepoeng = int(input("Studiepoeng: "))
-    nytt_emne = Emne(kode, navn, semester, sp)
+    nytt_emne = Emne(kode, navn, semester, studiepoeng)
     emner.append(nytt_emne)
     print("Emne opprettet!")
 
