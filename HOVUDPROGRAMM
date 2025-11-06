@@ -114,18 +114,27 @@ def lag_emne():
     print("Emne opprettet!")
 
 def les_fra_fil():
+    # funksjonen endrer de globale listene, enkel måte å gjøre det på inni
+    # en funksjon
     global emner, studieplaner
     try:
+        # innholdet i fila blir lastet til emne_data variabelen, som en
+        # liste av dictionaries
         with open("emner.json") as f:
             emne_data = json.load(f)
+            # oppretter nye emneobjekt ved å pakke ut hver dictionary
             emner = [Emne(**d) for d in emne_data]
 
         with open("studieplaner.json") as f:
+            # samme som over bare at den laster fila inn i variabelen plan_data
             plan_data = json.load(f)
             studieplaner = []
             for d in plan_data:
+                # oppretter nytt studieplan objekt med plan_id og tittel fra
+                #dictionary
                 p = Studieplan(d['plan_id'], d['tittel'])
                 p.semestre = d['semestre']
+                # legger til objektet i listen
                 studieplaner.append(p)
         print("Data lest fra fil!")
     except FileNotFoundError:
