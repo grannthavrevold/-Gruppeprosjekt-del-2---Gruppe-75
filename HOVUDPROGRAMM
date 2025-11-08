@@ -138,7 +138,7 @@ def legg_til_emne_i_plan():
     for e in emner:
         print(e)
 
-    kode = input("Skriv inn emnekode som skal legges til: ")
+    kode = input("Skriv inn emnekode som skal legges til: ").strip().upper()
     emne = next((e for e in emner if e.kode == kode), None)
     if not emne:
         print("Fant ikke emne.")
