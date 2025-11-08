@@ -200,7 +200,7 @@ def sjekk_plan_gyldig():
 
 
 def finn_planer_med_emne():
-    kode = input("Emnekode: ")
+    kode = input("Emnekode: ").strip().upper()
     brukte_i = [p.tittel for p in studieplaner if any(kode in sem for sem in p.semestre.values())]
     if brukte_i:
         print(f"Emnet {kode} brukes i disse studieplanene:")
