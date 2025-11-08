@@ -105,13 +105,20 @@ emner = []           # liste med Emne-objekter
 studieplaner = []    # liste med Studieplan-objekter
 
 def lag_emne():
-    kode = input("Emnekode: ")
+    kode = input("Emnekode: ").strip().upper()
+    
+    # sjekk om emnet finnes fra før
+    if any(e.kode == kode for e in emner):
+        print("Feil: Et emne med denne koden finnes allerede.")
+        return
+
     navn = input("Navn: ")
-    semester = input("Semester (H/V): ")
+    semester = input("Semester (H/V): ").strip().upper()
     studiepoeng = int(input("Studiepoeng: "))
+
     nytt_emne = Emne(kode, navn, semester, studiepoeng)
     emner.append(nytt_emne)
-    print("Emne opprettet!")
+    print(f"Emnet {kode} ble opprettet!")
 
 def legg_til_emne_i_plan():
     if not emner:
