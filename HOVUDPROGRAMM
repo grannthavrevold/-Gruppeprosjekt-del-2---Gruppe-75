@@ -113,6 +113,93 @@ def lag_emne():
     emner.append(nytt_emne)
     print("Emne opprettet!")
 
+def legg_til_emne_i_plan():
+    if not emner:
+        print("Ingen emner registrert.")
+        return
+    if not studieplaner:
+        print("Ingen studieplaner finnes.")
+        return
+
+    plan_id = input("Skriv inn ID til studieplan: ")
+    plan = next((p for p in studieplaner if p.plan_id == plan_id), None)
+    if not plan:
+        print("Fant ikke studieplan.")
+        return
+
+    print("Tilgjengelige emner:")
+    for e in emner:
+        print(e)
+
+    kode = input("Skriv inn emnekode som skal legges til: ")
+    emne = next((e for e in emner if e.kode == kode), None)
+    if not emne:
+        print("Fant ikke emne.")
+        return
+
+    semester = int(input("Hvilket semester (1-6): "))
+    plan.legg_til_emne(emne, semester)
+
+
+def fjern_emne_fra_plan():
+    plan_id = input("Skriv inn ID til studieplan: ")
+    plan = next((p for p in studieplaner if p.plan_id == plan_id), None)
+    if not plan:
+        print("Fant ikke studieplan.")
+        return
+
+    kode = input("Emnekode som skal fjernes: ")
+    plan.fjern_emne(kode)
+
+
+def skriv_ut_emner():
+    if not emner:
+        print("Ingen emner registrert.")
+        return
+    print("\nRegistrerte emner:")
+    for e in emner:
+        print(e)
+
+
+def lag_studieplan():
+    plan_id = input("ID for studieplan: ")
+    tittel = input("Tittel på studieplan: ")
+    ny_plan = Studieplan(plan_id, tittel)
+    studieplaner.append(ny_plan)
+    print("Ny studieplan opprettet!")
+
+
+def skriv_ut_plan():
+    plan_id = input("ID til studieplan: ")
+    plan = next((p for p in studieplaner if p.plan_id == plan_id), None)
+    if plan:
+        print(plan)
+    else:
+        print("Fant ikke studieplan.")
+
+
+def sjekk_plan_gyldig():
+    plan_id = input("ID til studieplan: ")
+    plan = next((p for p in studieplaner if p.plan_id == plan_id), None)
+    if plan:
+        if plan.er_gyldig():
+            print("Studieplanen er gyldig!")
+        else:
+            print("Studieplanen er IKKE gyldig.")
+    else:
+        print("Fant ikke studieplan.")
+
+
+def finn_planer_med_emne():
+    kode = input("Emnekode: ")
+    brukte_i = [p.tittel for p in studieplaner if any(kode in sem for sem in p.semestre.values())]
+    if brukte_i:
+        print(f"Emnet {kode} brukes i disse studieplanene:")
+        for t in brukte_i:
+            print(f"- {t}")
+    else:
+        print("Emnet finnes ikke i noen studieplan.")
+
 def les_fra_fil():
     # funksjonen endrer de globale listene, enkel måte å gjøre det på inni
     # en funksjon
