@@ -167,10 +167,12 @@ def skriv_ut_emner():
     for e in emner:
         print(e)
 
-
 def lag_studieplan():
     plan_id = input("ID for studieplan: ")
     tittel = input("Tittel på studieplan: ")
+    if any(e.plan_id == plan_id for e in studieplaner):
+            print("Feil: En studieplan med denne koden finnes allerede.")
+            return
     ny_plan = Studieplan(plan_id, tittel)
     studieplaner.append(ny_plan)
     print("Ny studieplan opprettet!")
