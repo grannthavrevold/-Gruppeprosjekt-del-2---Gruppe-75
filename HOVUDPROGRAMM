@@ -243,7 +243,7 @@ def les_fra_fil():
                 # oppretter nytt studieplan objekt med plan_id og tittel fra
                 #dictionary
                 p = Studieplan(d['plan_id'], d['tittel'])
-                p.semestre = d['semestre']
+                p.semestre = {int(k): v for k, v in d['semestre'].items()}
                 # legger til objektet i listen
                 studieplaner.append(p)
         print("Data lest fra fil!")
