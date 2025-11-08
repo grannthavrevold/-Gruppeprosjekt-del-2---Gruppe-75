@@ -200,6 +200,20 @@ def finn_planer_med_emne():
     else:
         print("Emnet finnes ikke i noen studieplan.")
 
+def lagre_til_fil():
+    # lagre emner, with sikrer at filen lukkes etter bruk
+    with open("emner.json", "w") as f:
+        # dump konverterer listen emner til en liste av dictionaries ved å 
+        #bruke e.__dict__, som lagres i filen f, emner.json
+        json.dump([e.__dict__ for e in emner], f)
+
+    # lagre studieplaner
+    with open("studieplaner.json", "w") as f:
+        # konverterer hver studieplan til en dictionary med spesifikke felter 
+        # som plan_id, tittel, semestre, lagrer i fila
+        json.dump([{"plan_id": p.plan_id, "tittel": p.tittel, "semestre": p.semestre} for p in studieplaner], f)
+    print("Data lagret!")
+
 def les_fra_fil():
     # funksjonen endrer de globale listene, enkel måte å gjøre det på inni
     # en funksjon
