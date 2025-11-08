@@ -155,7 +155,7 @@ def fjern_emne_fra_plan():
         print("Fant ikke studieplan.")
         return
 
-    kode = input("Emnekode som skal fjernes: ")
+    kode = input("Emnekode som skal fjernes: ").strip().upper()
     plan.fjern_emne(kode)
 
 
